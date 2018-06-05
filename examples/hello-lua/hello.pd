@@ -1,0 +1,13 @@
+#N canvas 418 209 450 324.094 10;
+#X obj 31 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 31 63 hello;
+#X obj 31 85 print;
+#X floatatom 100 23 5 0 0 0 - - -, f 5;
+#X msg 62 23 lua;
+#X msg 145 23 0;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;

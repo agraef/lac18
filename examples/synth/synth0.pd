@@ -1,0 +1,27 @@
+#N canvas 278 236 514 341 10;
+#X obj 114 38 notein;
+#X obj 114 86 poly 4 1;
+#X obj 114 110 pack f f f;
+#X obj 114 132 route 1 2 3 4;
+#X obj 120 303 dac~;
+#X obj 159 63 / 127;
+#X obj 120 281 *~ 0.2;
+#X obj 209 263 hsl 137 21 0 1 0 1 empty empty empty -2 -8 0 10 -248773
+-1 -1 3800 1;
+#X obj 16 60 ctlin 123;
+#X msg 16 102 stop;
+#X obj 16 82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 0 0 1 0;
+#X connect 0 1 5 0;
+#X connect 1 0 2 0;
+#X connect 1 1 2 1;
+#X connect 1 2 2 2;
+#X connect 2 0 3 0;
+#X connect 5 0 1 1;
+#X connect 6 0 4 0;
+#X connect 6 0 4 1;
+#X connect 7 0 6 1;
+#X connect 8 0 10 0;
+#X connect 9 0 1 0;
+#X connect 10 0 9 0;

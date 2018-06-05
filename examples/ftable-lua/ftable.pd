@@ -1,0 +1,130 @@
+#N canvas 261 95 680 370 10;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array ftable 32771 float 0 black black;
+#X coords 0 1 32770 -1 200 140 1;
+#X restore 24 186 graph;
+#X obj 352 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 419 224 5 0 0 0 - - -, f 5;
+#X obj 419 267 output~;
+#X obj 419 245 tabosc4~ ftable;
+#X obj 420 173 s ftable;
+#X msg 375 16 1;
+#X msg 238 206 sinesum 32768 1 0.5 0.33;
+#X msg 238 231 normalize;
+#X msg 238 256 write ftable.dat;
+#X obj 238 313 s ftable;
+#X obj 352 41 f 1;
+#X obj 394 41 + 1;
+#X floatatom 352 63 5 0 0 0 - - -, f 5;
+#X msg 352 131 normalize;
+#X obj 420 153 list trim;
+#X obj 420 131 list prepend sinesum 32768;
+#X obj 352 108 t b a;
+#X msg 238 181 sinesum 32768 1;
+#N canvas 121 125 577 660.062 waveforms 0;
+#X obj 11 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 11 96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 11 10 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 11 138 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 73 9 Kosinus;
+#X text 73 138 Rechteckwelle (bipolar);
+#X text 73 95 Rechteckwelle (unipolar);
+#X text 73 52 Sägezahn;
+#X obj 11 182 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 73 182 Dreieckwelle;
+#X obj 11 30 waveform ftable -> cos (2*pi*x);
+#X obj 11 72 waveform ftable -> 2*x-1;
+#X obj 11 202 waveform ftable -> 4*abs(x+1/4-floor(x+3/4))-1;
+#X obj 11 116 waveform ftable -> x<0.5 and 1 or 0;
+#X obj 11 158 waveform ftable -> 2*(x<0.5 and 1 or 0)-1;
+#X connect 0 0 11 0;
+#X connect 1 0 13 0;
+#X connect 2 0 10 0;
+#X connect 3 0 14 0;
+#X connect 8 0 12 0;
+#X restore 79 33 pd waveforms;
+#N canvas 822 153 611 530.062 bandlimited 0;
+#X obj 15 17 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 38 17 1;
+#X obj 15 42 f 1;
+#X obj 57 42 + 1;
+#X floatatom 15 64 5 0 0 0 - - -, f 5;
+#X obj 15 246 outlet;
+#X text 166 135 Rechteckwelle;
+#X text 106 178 Dreieckwelle;
+#X obj 98 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 121 16 1;
+#X obj 98 41 f 1;
+#X obj 140 41 + 1;
+#X floatatom 98 63 5 0 0 0 - - -, f 5;
+#X text 196 89 Sägezahn;
+#X obj 182 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 205 16 1;
+#X obj 182 41 f 1;
+#X obj 224 41 + 1;
+#X floatatom 182 63 5 0 0 0 - - -, f 5;
+#X obj 120 112 lexpr n -> seq(1 \, n \, function(k) return -1/k end)
+;
+#X obj 76 157 lexpr n -> seq(1 \, n \, function(k) return (k % 2)/k
+end);
+#X obj 15 201 lexpr n -> seq(1 \, n \, function(k) return (k % 2)/k^2*(-1)^(k
+// 2) end);
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 2 1;
+#X connect 4 0 21 0;
+#X connect 8 0 10 0;
+#X connect 9 0 10 1;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 1;
+#X connect 12 0 20 0;
+#X connect 14 0 16 0;
+#X connect 15 0 16 1;
+#X connect 16 0 17 0;
+#X connect 16 0 18 0;
+#X connect 17 0 16 1;
+#X connect 18 0 19 0;
+#X connect 19 0 5 0;
+#X connect 20 0 5 0;
+#X connect 21 0 5 0;
+#X restore 229 33 pd bandlimited;
+#X obj 510 176 loadbang;
+#X msg 510 198 264;
+#X msg 262 282 yticks 0 0.1 5;
+#X obj 352 86 lexpr n -> seq(1 \, n \, function(k) return 1/k end)
+;
+#X connect 1 0 11 0;
+#X connect 2 0 4 0;
+#X connect 4 0 3 0;
+#X connect 4 0 3 1;
+#X connect 6 0 11 1;
+#X connect 7 0 10 0;
+#X connect 8 0 10 0;
+#X connect 9 0 10 0;
+#X connect 11 0 13 0;
+#X connect 11 0 12 0;
+#X connect 12 0 11 1;
+#X connect 13 0 24 0;
+#X connect 14 0 5 0;
+#X connect 15 0 5 0;
+#X connect 16 0 15 0;
+#X connect 17 0 14 0;
+#X connect 17 1 16 0;
+#X connect 18 0 10 0;
+#X connect 20 0 17 0;
+#X connect 21 0 22 0;
+#X connect 22 0 2 0;
+#X connect 23 0 10 0;
+#X connect 24 0 17 0;
