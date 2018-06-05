@@ -1,0 +1,80 @@
+#N struct nub float x float y float r;
+#N canvas 440 250 456 329 10;
+#N canvas 66 102 590 509 (subpatch) 0;
+#X obj 18 44 draw ellipse 142.769 157.538 238.695 337.212;
+#X msg 18 18 fill #A4C2F7;
+#X obj 18 103 draw path M 142.068 448.608 c 31.49 31.498 74.878 48.134
+119.354 45.763 c -75.664 -3.95 -135.957 -72.691 -135.957 -157.159 c
+0 -84.466 60.292 -153.206 135.952 -157.159 c -65.087 -3.391 -125.53
+33.689 -151.998 93.248 S 95.933 402.571 142.068 448.608 L 142.068 448.608
+z;
+#X obj 18 197 draw path M 253.464 504.597 c -79.861 0.005 -148.603
+-56.405 -164.187 -134.73 s 26.332 -156.751 100.113 -187.315 s 158.877
+-4.752 203.246 61.649 s 35.654 154.897 -20.816 211.367 l 0 0 C 340.5
+487.062 297.881 504.717 253.464 504.597 L 253.464 504.597 z M 253.464
+189.52 c -66.847 -0.001 -125.361 44.896 -142.662 109.465 s 10.922 132.709
+68.814 166.132 s 131.014 23.796 178.282 -23.473 l 0 0 c 42.238 -42.24
+54.874 -105.764 32.014 -160.952 C 367.052 225.505 313.2 189.521 253.464
+189.52 z;
+#X obj 18 322 draw path M 253.464 347.058 c -3.982 -0.001 -7.571 -2.4
+-9.095 -6.078 c -1.524 -3.679 -0.682 -7.913 2.133 -10.729 l 111.394
+-111.395 c 2.487 -2.487 6.112 -3.458 9.51 -2.548 s 6.051 3.564 6.962
+6.962 s -0.061 7.023 -2.548 9.51 L 260.426 344.173 C 258.582 346.023
+256.076 347.061 253.464 347.058 L 253.464 347.058 z;
+#X msg 18 176 fill #428DFF;
+#X msg 18 82 fill white;
+#X obj 154 10 loadbang;
+#X obj 292 16 loadbang;
+#X msg 292 38 transform rotate r 256 337.212;
+#X connect 1 0 0 0;
+#X connect 5 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 2 0;
+#X connect 7 0 1 0;
+#X connect 7 0 5 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 4 0;
+#X restore 34 99 draw g;
+#X scalar nub 196 166 0 \;;
+#X obj 34 50 loadbang;
+#X obj 34 18 struct nub float x float y float r;
+#X obj 34 121 route drag;
+#N canvas 202 176 451 324 mouse 0;
+#X obj 32 43 unpack p f f;
+#X obj 32 65 t a a;
+#X obj 32 87 get nub r;
+#X floatatom 32 109 5 0 0 0 - - -, f 5;
+#X obj 32 130 -;
+#X floatatom 32 152 5 0 0 0 - - -, f 5;
+#X obj 32 198 set nub r;
+#X obj 32 18 inlet;
+#X obj 32 173 t f f;
+#X obj 59 223 outlet;
+#X obj 134 18 inlet;
+#X connect 0 0 1 0;
+#X connect 0 2 4 1;
+#X connect 1 0 2 0;
+#X connect 1 1 6 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 0;
+#X connect 7 0 0 0;
+#X connect 8 0 6 0;
+#X connect 8 1 9 0;
+#X connect 10 0 5 0;
+#X restore 34 158 pd mouse;
+#X floatatom 34 180 5 0 0 0 - - -, f 5;
+#X msg 34 75 transform scale 0.1 0.1 \, drag 1;
+#X text 64 242 image made by Smashicons from www.flaticon.com licensed
+under CC V3.0 BY;
+#X msg 110 120 0;
+#X floatatom 110 142 5 0 0 0 - - -, f 5;
+#X connect 0 0 4 0;
+#X connect 2 0 7 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 0 0;
+#X connect 9 0 10 0;
+#X connect 10 0 5 1;
